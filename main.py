@@ -115,7 +115,7 @@ async def videos_handler(bot: Client, m: Message):
             )
 
 
-@NubBot.on_message(filters.private & filters.photo & ~filters.edited)
+@NubBot.on_message(filters.private & filters.photo)
 async def photo_handler(bot: Client, m: Message):
     await AddUserToDatabase(bot, m)
     Fsub = await ForceSub(bot, m)
@@ -144,7 +144,7 @@ async def settings_handler(bot: Client, m: Message):
     await OpenSettings(editable, m.from_user.id)
 
 
-@NubBot.on_message(filters.private & filters.command("broadcast") & filters.reply & filters.user(Config.BOT_OWNER) & ~filters.edited)
+@NubBot.on_message(filters.private & filters.command("broadcast") & filters.reply & filters.user(Config.BOT_OWNER))
 async def _broadcast(_, m: Message):
     await broadcast_handler(m)
 
